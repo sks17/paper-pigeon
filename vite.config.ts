@@ -11,4 +11,25 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'aws-sdk': [
+            '@aws-sdk/client-bedrock-agent-runtime',
+            '@aws-sdk/client-dynamodb',
+            '@aws-sdk/client-s3',
+            '@aws-sdk/lib-dynamodb',
+            '@aws-sdk/s3-request-presigner',
+            '@aws-sdk/util-dynamodb'
+          ],
+          '3d-libs': ['three', 'three-spritetext', '3d-force-graph'],
+          'd3-libs': ['d3', 'd3-force'],
+          'vendor': ['react', 'react-dom']
+        }
+      }
+    },
+    chunkSizeWarningLimit: 1000,
+    sourcemap: false
+  }
 })
