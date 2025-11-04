@@ -272,6 +272,9 @@ const ResearchNetworkGraph: React.FC<ResearchNetworkGraphProps> = ({ className =
 
     // Initialize the 3D force graph
     const graph = new ForceGraph3D(containerRef.current)
+    .forceEngine('ngraph')        // use faster ngraph physics engine
+    .d3VelocityDecay(0.3)         // less jitter = fewer calculations
+    .cooldownTicks(100)
       .graphData(graphData)
       .d3AlphaDecay(0.01) // Slower decay for more stable layout
       .d3VelocityDecay(0.3) // Higher velocity decay for less movement
